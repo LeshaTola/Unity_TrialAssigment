@@ -1193,9 +1193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb457747d96a0f4abf7fdd2e9f80a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTemplate: {fileID: 0}
+  enemyTemplate: {fileID: 2017080230865879520, guid: bf4e5709d0ee6b549ae902858f771394, type: 3}
   player: {fileID: 1545286503}
   spawnZone: {fileID: 638950176}
+  spawnRate: 0.5
 --- !u!4 &1440709221
 Transform:
   m_ObjectHideFlags: 0
@@ -1285,7 +1286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b91c2b04067dfe48885ecde09749783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
 --- !u!70 &1545286504
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
