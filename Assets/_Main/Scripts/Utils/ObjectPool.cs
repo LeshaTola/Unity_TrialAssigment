@@ -9,6 +9,9 @@ public class ObjectPool<T>
 	private Action<T> releaseAction;
 
 	private Queue<T> pool = new();
+	private List<T> active = new();
+
+	public IReadOnlyCollection<T> Active { get => active; }
 
 	public ObjectPool(Func<T> preloadFunc, Action<T> getAction, Action<T> releaseAction, int preloadCount)
 	{
@@ -40,13 +43,17 @@ public class ObjectPool<T>
 		}
 
 		T pooledObject = pool.Dequeue();
+		active.Add(pooledObject);
+
 		getAction.Invoke(pooledObject);
 		return pooledObject;
 	}
 
 	public void Release(T obj)
 	{
-		releaseAction?.Invoke(obj);
+		active.Remove(obj);
 		pool.Enqueue(obj);
+
+		releaseAction?.Invoke(obj);
 	}
 }
