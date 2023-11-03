@@ -8,6 +8,15 @@ public class EnemySpawner : MonoBehaviour
 	[SerializeField] private Collider2D spawnZone;
 
 	private float spawnRadius;
+	private ObjectPool<Enemy> enemyPool;
+
+	private void Awake()
+	{
+		enemyPool = new(
+			() => Instantiate(enemyTemplate),
+			(obj) => obj.gameObject.SetActive(true),
+			(obj) => obj.gameObject.SetActive(false), 10);
+	}
 
 	private void Start()
 	{
@@ -34,12 +43,13 @@ public class EnemySpawner : MonoBehaviour
 		}
 		while (!spawnZone.bounds.Contains(spawnPosition));
 
-		Spawn(enemyTemplate, spawnPosition);
+		Spawn(spawnPosition);
 	}
 
-	private void Spawn(Enemy enemy, Vector2 position)
+	private void Spawn(Vector2 position)
 	{
-		Instantiate(enemy, position, Quaternion.identity);
+		var spawnedEnemy = enemyPool.Get();
+		spawnedEnemy.transform.position = position;
 	}
 
 }
