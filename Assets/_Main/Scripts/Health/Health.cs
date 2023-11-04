@@ -1,18 +1,17 @@
 using System;
-using UnityEngine;
 
-[Serializable]
 public class Health
 {
 	public event Action<float> OnValueChanged;
 	public event Action OnDied;
 
 	public float Value { get; private set; }
-	[field: SerializeField] public float MaxValue { get; private set; }
+	public float MaxValue { get; private set; }
 
 	public Health(float maxValue)
 	{
 		MaxValue = maxValue;
+		Value = MaxValue;
 	}
 
 	public void TakeDamage(float damage)
@@ -28,7 +27,7 @@ public class Health
 			Value = 0;
 			OnDied?.Invoke();
 		}
-		OnValueChanged?.Invoke(damage);
+		OnValueChanged?.Invoke(Value);
 	}
 
 	public void Heal(float healValue)
@@ -39,6 +38,6 @@ public class Health
 		}
 
 		Value += healValue;
-		OnValueChanged?.Invoke(healValue);
+		OnValueChanged?.Invoke(Value);
 	}
 }

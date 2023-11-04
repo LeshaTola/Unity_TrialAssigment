@@ -5,16 +5,24 @@ using UnityEngine;
 public class Player : MonoBehaviour, IDamageable
 {
 	[SerializeField] private List<WeaponStatsSO> weaponsSO;
-	[SerializeField] private Health health;
+	[SerializeField] private float maxHealth;
 
+	private Health health;
 	private List<Weapon> weapons = new();
 
 	public PlayerMovement Movement { get; private set; }
 
 	private void Awake()
 	{
+		health = new(maxHealth);
 		Movement = GetComponent<PlayerMovement>();
+		health.OnValueChanged += Health_OnValueChanged;
 		InitWeapons();
+	}
+
+	private void Health_OnValueChanged(float healthValue)
+	{
+		Debug.Log(healthValue);
 	}
 
 	private void InitWeapons()
