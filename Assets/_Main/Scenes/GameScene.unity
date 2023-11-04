@@ -1130,6 +1130,7 @@ GameObject:
   - component: {fileID: 1545286504}
   - component: {fileID: 1545286502}
   - component: {fileID: 1545286503}
+  - component: {fileID: 1545286505}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1192,7 +1193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b91c2b04067dfe48885ecde09749783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
 --- !u!70 &1545286504
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1228,6 +1229,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.6, y: 1.1}
   m_Direction: 0
+--- !u!114 &1545286505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545286497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e583efc4b3b63ef46883efc587631062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponsSO:
+  - {fileID: 11400000, guid: b3cbba627073e5641a90d809a7e4bd35, type: 2}
+  - {fileID: 11400000, guid: 70c8aebabbad539418722285bd2c4f17, type: 2}
+  <Movement>k__BackingField: {fileID: 1545286503}
 --- !u!1 &1771678399
 GameObject:
   m_ObjectHideFlags: 0
