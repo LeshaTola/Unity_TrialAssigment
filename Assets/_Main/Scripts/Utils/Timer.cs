@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using UnityEngine;
-
 public class Timer
 {
 	private Action<float> timerStepAction;
