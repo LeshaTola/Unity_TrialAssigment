@@ -1,15 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+[RequireComponent(typeof(PlayerMovement))]
+public class Player : MonoBehaviour, IDamageable
 {
 	[SerializeField] private List<WeaponStatsSO> weaponsSO;
-
-	[field: SerializeField] public PlayerMovement Movement { get; private set; }
+	[SerializeField] private Health health;
 
 	private List<Weapon> weapons = new();
 
+	public PlayerMovement Movement { get; private set; }
+
 	private void Awake()
+	{
+		Movement = GetComponent<PlayerMovement>();
+		InitWeapons();
+	}
+
+	private void InitWeapons()
 	{
 		foreach (var weapon in weaponsSO)
 		{
@@ -18,9 +26,7 @@ public class Player : MonoBehaviour
 			weapons.Add(newWeapon);
 
 			if (newWeapon is MeleeWeapon)
-			{
 				newWeapon.transform.SetParent(transform, false);
-			}
 
 			newWeapon.Init(this);
 			StartAttacking(newWeapon);
@@ -31,5 +37,10 @@ public class Player : MonoBehaviour
 	{
 		Timer timer = new(weapon.StatsSO.Cooldown, looping: true, endAction: () => { weapon.Attack(); });
 		StartCoroutine(timer.Start());
+	}
+
+	public void TakeDamage(float damage)
+	{
+		health.TakeDamage(damage);
 	}
 }

@@ -1180,7 +1180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1440709220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1338,6 +1338,8 @@ MonoBehaviour:
   weaponsSO:
   - {fileID: 11400000, guid: b3cbba627073e5641a90d809a7e4bd35, type: 2}
   - {fileID: 11400000, guid: 70c8aebabbad539418722285bd2c4f17, type: 2}
+  health:
+    <MaxValue>k__BackingField: 100
   <Movement>k__BackingField: {fileID: 1545286503}
 --- !u!1 &1771678399
 GameObject:
@@ -1540,7 +1542,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1998465616}
-  - component: {fileID: 1998465615}
   m_Layer: 0
   m_Name: Bootstrap
   m_TagString: Untagged
@@ -1548,18 +1549,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1998465615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998465614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6beb934648dcf044c9ab5df31fb12909, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1998465616
 Transform:
   m_ObjectHideFlags: 0
