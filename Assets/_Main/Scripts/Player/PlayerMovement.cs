@@ -5,12 +5,13 @@ public class PlayerMovement : MonoBehaviour, IControllable
 {
 	[SerializeField] private float speed;
 
-	private Rigidbody2D RB;
-	private Vector2 moveDir;
+	private Rigidbody2D rigitbody;
+	public Vector2 MoveDirection { get; private set; }
+	public Vector2 LastMoveDirection { get; private set; } = new Vector2(1, 0);
 
 	private void Awake()
 	{
-		RB = GetComponent<Rigidbody2D>();
+		rigitbody = GetComponent<Rigidbody2D>();
 	}
 
 	private void FixedUpdate()
@@ -20,11 +21,15 @@ public class PlayerMovement : MonoBehaviour, IControllable
 
 	public void Move(Vector2 direction)
 	{
-		moveDir = direction;
+		MoveDirection = direction;
+		if (MoveDirection != LastMoveDirection && MoveDirection != Vector2.zero)
+		{
+			LastMoveDirection = MoveDirection;
+		}
 	}
 
 	private void MoveInternal()
 	{
-		RB.velocity = moveDir * speed;
+		rigitbody.velocity = MoveDirection * speed;
 	}
 }
