@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f04f16d4af40554097c6e7ddca40630, type: 3}
-  m_Name: Fireball
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 6904985983781838718, guid: 12f2ccf38517d4049bbb0da5c6650b18, type: 3}
+  <Prefab>k__BackingField: {fileID: 6125327788117573378, guid: c7d95474f9bd9e04ca776024e986c988, type: 3}
   <Damage>k__BackingField: 10
-  <Duration>k__BackingField: 1
-  <Speed>k__BackingField: 10
-  <Cooldown>k__BackingField: 2
+  <Duration>k__BackingField: 0.5
+  <Speed>k__BackingField: 0
+  <Cooldown>k__BackingField: 3

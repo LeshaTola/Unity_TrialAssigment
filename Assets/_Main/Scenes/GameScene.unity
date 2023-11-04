@@ -1243,6 +1243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponsSO:
   - {fileID: 11400000, guid: b3cbba627073e5641a90d809a7e4bd35, type: 2}
+  - {fileID: 11400000, guid: 70c8aebabbad539418722285bd2c4f17, type: 2}
   <Movement>k__BackingField: {fileID: 1545286503}
 --- !u!1 &1771678399
 GameObject:

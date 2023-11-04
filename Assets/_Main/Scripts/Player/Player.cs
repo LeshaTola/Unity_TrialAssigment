@@ -17,6 +17,11 @@ public class Player : MonoBehaviour
 			var newWeapon = newWeaponGO.GetComponent<Weapon>();
 			weapons.Add(newWeapon);
 
+			if (newWeapon is MeleeWeapon)
+			{
+				newWeapon.transform.SetParent(transform, false);
+			}
+
 			newWeapon.Init(this);
 			StartAttacking(newWeapon);
 		}
