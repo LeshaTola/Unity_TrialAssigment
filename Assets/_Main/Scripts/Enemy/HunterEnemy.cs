@@ -8,11 +8,19 @@ public class HunterEnemy : Enemy, IDamageable
 	private Health health;
 	private EnemyMovement movement;
 
-	private void Awake()
+	public override void Init(Player player, EnemySpawner spawner)
 	{
+		base.Init(player, spawner);
 		movement = GetComponent<EnemyMovement>();
+		movement.Init(player.transform);
+
 		health = new(maxHealth);
 		health.OnDied += OnDied;
+	}
+
+	private void OnDestroy()
+	{
+		health.OnDied -= OnDied;
 	}
 
 	public void TakeDamage(float damage)
@@ -22,7 +30,8 @@ public class HunterEnemy : Enemy, IDamageable
 
 	private void OnDied()
 	{
-		Destroy(gameObject);
+		spawner.EnemyPool.Release(this);
+		health.Heal(maxHealth);
 	}
 
 }

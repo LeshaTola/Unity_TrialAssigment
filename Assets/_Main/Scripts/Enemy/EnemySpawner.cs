@@ -3,21 +3,24 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-	[SerializeField] private EnemyMovement enemyTemplate;
-	[SerializeField] private PlayerMovement player;
+	[SerializeField] private Enemy enemyTemplate;
+	[SerializeField] private Player player;
 	[SerializeField] private Collider2D spawnZone;
+	[SerializeField] private Transform enemyContainer;
 	[SerializeField] private float spawnRate = 0.5f;
 
 	private float spawnRadius;
-	private ObjectPool<EnemyMovement> enemyPool;
+	private ObjectPool<Enemy> enemyPool;
+
+	public ObjectPool<Enemy> EnemyPool { get => enemyPool; private set => enemyPool = value; }
 
 	private void Start()
 	{
-		enemyPool = new(
+		EnemyPool = new(
 		() =>
 		{
-			var newEnemy = Instantiate(enemyTemplate);
-			newEnemy.Init(player.transform);
+			var newEnemy = Instantiate(enemyTemplate, enemyContainer);
+			newEnemy.Init(player, this);
 			return newEnemy;
 		},
 		(obj) => obj.gameObject.SetActive(true),
@@ -52,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
 
 	private void Spawn(Vector2 position)
 	{
-		var spawnedEnemy = enemyPool.Get();
+		var spawnedEnemy = EnemyPool.Get();
 		spawnedEnemy.transform.position = position;
 	}
 
