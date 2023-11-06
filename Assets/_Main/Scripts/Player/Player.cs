@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour, IHealth, IDamageable
 {
 	[SerializeField] private List<WeaponStatsSO> weaponsSO;
 	[SerializeField] private float maxHealth;
@@ -10,6 +10,7 @@ public class Player : MonoBehaviour, IDamageable
 	private List<Weapon> weapons = new();
 
 	public PlayerMovement Movement { get; private set; }
+
 	public Health Health { get; private set; }
 
 	private void Awake()

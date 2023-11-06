@@ -4,19 +4,25 @@ using UnityEngine.UI;
 public class HealthBarUI : MonoBehaviour
 {
 	[SerializeField] private Slider slider;
-	[SerializeField] private Player player;
+	[SerializeField] private GameObject gameObjectWithHealth;
+
+	private IHealth iHealth;
 
 	private void Start()
 	{
-		player.Health.OnValueChanged += OnHealthChanged;
+		iHealth = gameObjectWithHealth.GetComponent<IHealth>();
+		if (iHealth == null)
+			Debug.LogError($"There is no component with IHealth on {gameObject.name}");
+
+		iHealth.Health.OnValueChanged += OnHealthChanged;
 	}
 
 	private void OnDestroy()
 	{
-		player.Health.OnValueChanged -= OnHealthChanged;
+		iHealth.Health.OnValueChanged -= OnHealthChanged;
 	}
 
-	private void OnHealthChanged(float health, float maxValue)
+	protected void OnHealthChanged(float health, float maxValue)
 	{
 		UpdateUI(health, maxValue);
 	}

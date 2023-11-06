@@ -1,12 +1,14 @@
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyMovement))]
-public class HunterEnemy : Enemy, IDamageable
+public class HunterEnemy : Enemy, IHealth, IDamageable
 {
 	[SerializeField] private float maxHealth;
 
-	private Health health;
+
 	private EnemyMovement movement;
+
+	public Health Health { get; private set; }
 
 	public override void Init(Player player, EnemySpawner spawner)
 	{
@@ -14,24 +16,24 @@ public class HunterEnemy : Enemy, IDamageable
 		movement = GetComponent<EnemyMovement>();
 		movement.Init(player.transform);
 
-		health = new(maxHealth);
-		health.OnDied += OnDied;
+		Health = new(maxHealth);
+		Health.OnDied += OnDied;
 	}
 
 	private void OnDestroy()
 	{
-		health.OnDied -= OnDied;
+		Health.OnDied -= OnDied;
 	}
 
 	public void TakeDamage(float damage)
 	{
-		health.TakeDamage(damage);
+		Health.TakeDamage(damage);
 	}
 
 	private void OnDied()
 	{
 		spawner.EnemyPool.Release(this);
-		health.Heal(maxHealth);
+		Health.Heal(maxHealth);
 	}
 
 }
