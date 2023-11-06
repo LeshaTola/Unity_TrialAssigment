@@ -1,14 +1,16 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyMovement : MonoBehaviour
 {
 	[SerializeField] private float speed;
 
+	private Rigidbody2D rigidbody;
 	private Transform target;
 
-	public void Init(Transform target)
+	private void Awake()
 	{
-		this.target = target;
+		rigidbody = GetComponent<Rigidbody2D>();
 	}
 
 	private void FixedUpdate()
@@ -16,8 +18,14 @@ public class EnemyMovement : MonoBehaviour
 		Move();
 	}
 
+	public void Init(Transform target)
+	{
+		this.target = target;
+	}
+
 	private void Move()
 	{
-		transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.fixedDeltaTime);
+		Vector3 direction = Vector3.Normalize(target.position - transform.position);
+		rigidbody.velocity = direction * speed;
 	}
 }
