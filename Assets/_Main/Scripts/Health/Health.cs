@@ -2,7 +2,7 @@ using System;
 
 public class Health
 {
-	public event Action<float> OnValueChanged;
+	public event Action<float, float> OnValueChanged;
 	public event Action OnDied;
 
 	public float Value { get; private set; }
@@ -27,7 +27,7 @@ public class Health
 			Value = 0;
 			OnDied?.Invoke();
 		}
-		OnValueChanged?.Invoke(Value);
+		OnValueChanged?.Invoke(Value, MaxValue);
 	}
 
 	public void Heal(float healValue)
@@ -38,6 +38,10 @@ public class Health
 		}
 
 		Value += healValue;
-		OnValueChanged?.Invoke(Value);
+		if (Value > 0)
+		{
+			Value = healValue;
+		}
+		OnValueChanged?.Invoke(Value, MaxValue);
 	}
 }
