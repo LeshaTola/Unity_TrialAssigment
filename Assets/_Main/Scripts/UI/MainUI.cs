@@ -1,10 +1,20 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainUI : MonoBehaviour
 {
 	[SerializeField] private TextMeshProUGUI timeText;
 	[SerializeField] private GameManager gameManager;
+	[SerializeField] private Button restartButton;
+
+	private void Awake()
+	{
+		restartButton.onClick.AddListener(() =>
+		{
+			Loader.Load(Loader.Scene.GameScene);
+		});
+	}
 
 	private void Start()
 	{
