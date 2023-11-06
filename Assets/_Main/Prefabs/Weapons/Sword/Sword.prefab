@@ -245,6 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3798206120284413042}
   - component: {fileID: 3538605863806177939}
+  - component: {fileID: 648621651432165136}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -281,6 +282,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <StatsSO>k__BackingField: {fileID: 11400000, guid: 70c8aebabbad539418722285bd2c4f17, type: 2}
+--- !u!70 &648621651432165136
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125327788117573378}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.489881, y: 0.003677027}
+  m_Size: {x: 2.646052, y: 0.4044098}
+  m_Direction: 1
 --- !u!1 &7270972677974117340
 GameObject:
   m_ObjectHideFlags: 0
